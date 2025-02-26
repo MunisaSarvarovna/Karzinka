@@ -13,12 +13,12 @@ class Korzinka(ABC):
 
 n= input("ishlash vaqti>>")
 if  n<"07:00":
-    print("hali vahti bolmagan")
+    print("hali ochilmagan😐🤚")
 
 elif n>"23:00":
-    print("biz yopildik")
+    print("biz yopildik🫥❌")
 else:
-     print("hush kelibsiz")
+     print("hush kelibsiz👤😁")
 
 
 class Joylashuv(Korzinka):
@@ -37,7 +37,7 @@ m=input("korzinka haqida malumot kerakmi>>")
 if m.strip().lower()=="ha":
     print("6ta qator","5 ta filial","qizil va oq","sergili","1 gektar")
 elif m.strip().lower()=="yoq":
-    print("etiboringiz uchun ramat")
+    print("etiboringiz uchun ramat👍")
 else:
     print("yaxshi")
 
@@ -135,3 +135,67 @@ class Product:
 
 
 
+class Transport:
+    def __init__(self, davlat_raqami, turi):
+        self.davlat_raqami = davlat_raqami
+        self.turi = turi
+
+    def __str__(self):
+        return f"{self.turi} ({self.davlat_raqami})"
+
+class ParkovkaJoy:
+    def __init__(self, joy_raqami, joy_turi):
+        self.joy_raqami = joy_raqami
+        self.joy_turi = joy_turi
+        self.band = False
+        self.transport = None
+
+    def transport_joylashtir(self, transport):
+        if not self.band:
+            self.transport = transport
+            self.band = True
+            return True
+        return False
+
+    def transport_chiqar(self):
+        if self.band:
+            self.transport = None
+            self.band = False
+            return True
+        return False
+
+    def __str__(self):
+        return f"Joy {self.joy_raqami} ({self.joy_turi}) - {'Band' if self.band else 'Bosh'}"
+
+class Parkovka:
+    def __init__(self, sigimi):
+        self.joylar = [ParkovkaJoy(i, "Yengil mashina") for i in range(1, sigimi + 1)]
+
+    def bosh_joy_top(self):
+        for joy in self.joylar:
+            if not joy.band:
+                return joy
+        return None
+
+    def transport_kirit(self, transport):
+        joy = self.bosh_joy_top()
+        if joy:
+            joy.transport_joylashtir(transport)
+            print(f"{transport} {joy} joyga qoyildi.")
+        else:
+            print("Bo‘sh parkovka joyi yoq.")
+
+    def transport_chiqar(self, davlat_raqami):
+        for joy in self.joylar:
+            if joy.band and joy.transport.davlat_raqami == davlat_raqami:
+                joy.transport_chiqar()
+                print(f"Transport {davlat_raqami} {joy} joydan chiqarildi.")
+                return
+        print(f"Transport {davlat_raqami} parkovkada topilmadi.")
+
+    def parkovka_holati(self):
+        for joy in self.joylar:
+            print(joy)
+
+    def fzd(self):
+        pass
