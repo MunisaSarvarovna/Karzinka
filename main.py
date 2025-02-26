@@ -196,3 +196,6 @@ class Parkovka:
     def parkovka_holati(self):
         for joy in self.joylar:
             print(joy)
+
+    def fzd(self):
+        pass
