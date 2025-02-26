@@ -54,26 +54,53 @@ class Human:
 
     def qabul(self,boyi,yoshi,tili):indent=4
 
-k=input("Hodim boyini kiriting>>")
+class Hodim(Human):
+    def say(self):
+        return f"{self.hodim}"
 
-if k<"160":
-    print("kechirarsiz togri kelmadiz")
-elif k>160:
-    print("hush kelibsiz")
-else:
-    print("hush kelibsiz")
 
+def ishga_qabul():
+
+        javob = input("Ishga qabul qilamiz. Rozimisiz? (ha/yo'q): ").strip().lower()
+
+        if javob == "ha":
+            ism = input("Ismingizni kiriting: ")
+            yosh = input("Yoshingizni kiriting: ")
+            telefon = input("Telefon raqamingizni kiriting: ")
+
+            print("\nRahmat! Sizning ma'lumotlaringiz qabul qilindi.")
+            print(f"Ism: {ism}\nYosh: {yosh}\nTelefon: {telefon}\n")
+        elif javob == "yo'q":
+            print("Keyingi nomzodga o'tamiz...\n")
+        else:
+            print("Iltimos, faqat 'ha' yoki 'yo'q' deb javob bering.")
+
+
+ishga_qabul()
+
+
+class Kassir(Human):
+    def say(self):
+        return f"{self.kassir}"
+k=input("Siz ishga kirmoqchimisz malumot berilikmi?>>")
 
 l=input("3 ta til biladimi,kulib turadimi>>")
 if l =="ha":
     print("yaxshi")
+
 elif l =="yoq":
     print("yoq bolmadingiz")
 else:
     print("yoq")
 
 
-mj=input("Mijoz puli yetadimi>>")
+class Mijoz(Human):
+
+    def get(self):
+        return f"{self.mijoz}"
+mj=input(""
+         "Mijozlarga otamiz:>>"
+         "Mijoz puli yetadimi>>")
 if mj =="ha":
     print("Mana mahsulotingiz")
 elif mj == "yoq ":
@@ -82,7 +109,29 @@ else:
     print("yoq")
 
 
-dr=input("")
+dr=input("Direktor yaxshimi>>")
+if mj =="ha":
+    print("yaxshi")
+elif mj == "yoq ":
+    print("ozgartirishni oylab koramiz")
+else:
+    print("ayb sizda")
+
+
+class Product:
+    def __init__(self,mahsulot,muddati,narx,hisoblash):
+        self.mahsulot=mahsulot
+        self.muddati=muddati
+        self.narx=narx
+        self.hisoblash=hisoblash
+
+    def malumot(self):
+        return f"{self.mahsulot} -  {self.muddati} - {self.narx} - {self.hisoblash}"
+
+
+
+
+
 
 
 
