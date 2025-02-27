@@ -160,9 +160,8 @@ class Buyurtma:
 
 class Mijoz:
     def __init__(self, ism, telefon):
-        self.__ism = ism  # Private o‘zgaruvchi
-        self.__telefon = telefon  # Private o‘zgaruvchi
-
+        self.__ism = ism
+        self.__telefon = telefon
     def malumot_olish(self):
         return {"ism": self.__ism, "telefon": self.__telefon}
 
