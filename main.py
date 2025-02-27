@@ -100,11 +100,11 @@ class Mijoz(Human):
         return f"{self.mijoz}"
 mj=input(""
          "Mijozlarga otamiz:>>"
-         "Mijoz puli yetadimi>>")
+         "Mijoz puli yetadimi💵>>")
 if mj =="ha":
-    print("Mana mahsulotingiz")
+    print("Mana mahsulotingiz🎁")
 elif mj == "yoq ":
-    print("kechirarsiz qarzga berilmidi")
+    print("kechirarsiz qarzga berilmidi😝")
 else:
     print("yoq")
 
@@ -115,7 +115,7 @@ if mj =="ha":
 elif mj == "yoq ":
     print("ozgartirishni oylab koramiz")
 else:
-    print("ayb sizda")
+    print("ayb sizda😂")
 
 
 class Product:
@@ -129,12 +129,6 @@ class Product:
         return f"{self.mahsulot} -  {self.muddati} - {self.narx} - {self.hisoblash}"
 
 
-
-
-
-
-
-
 class Transport:
     def __init__(self, davlat_raqami, turi):
         self.davlat_raqami = davlat_raqami
@@ -142,6 +136,7 @@ class Transport:
 
     def __str__(self):
         return f"{self.turi} ({self.davlat_raqami})"
+
 
 class ParkovkaJoy:
     def __init__(self, joy_raqami, joy_turi):
@@ -167,6 +162,26 @@ class ParkovkaJoy:
     def __str__(self):
         return f"Joy {self.joy_raqami} ({self.joy_turi}) - {'Band' if self.band else 'Bosh'}"
 
+
+class Mijoz:
+    def __init__(self, mijoz_ism):
+        self.mijoz_ism = mijoz_ism
+
+    def __str__(self):
+        return self.mijoz_ism
+
+    def transport_joylashtir(self, parkovka, transport):
+        joy = parkovka.bosh_joy_top()
+        if joy:
+            joy.transport_joylashtir(transport)
+            print(f"{transport} {joy} joyga qoyildi.")
+        else:
+            print("Bo‘sh parkovka joyi yo'q.")
+
+    def transport_chiqar(self, parkovka, davlat_raqami):
+        parkovka.transport_chiqar(davlat_raqami)
+
+
 class Parkovka:
     def __init__(self, sigimi):
         self.joylar = [ParkovkaJoy(i, "Yengil mashina") for i in range(1, sigimi + 1)]
@@ -183,7 +198,7 @@ class Parkovka:
             joy.transport_joylashtir(transport)
             print(f"{transport} {joy} joyga qoyildi.")
         else:
-            print("Bo‘sh parkovka joyi yoq.")
+            print("Bo‘sh parkovka joyi yo'q.")
 
     def transport_chiqar(self, davlat_raqami):
         for joy in self.joylar:
@@ -197,5 +212,31 @@ class Parkovka:
         for joy in self.joylar:
             print(joy)
 
-    def fzd(self):
-        pass
+class Hodim:
+    def __init__(self):
+        self.hodim_ism = "Hodim"
+
+    def joy_keremi(self):
+        mj = input("mashinangiz uchun joy keremi? (ha/yoq): ").lower()
+        if mj == "ha":
+            print("Marhamat😁!")
+            return True
+        elif mj == "yoq":
+            print("Sog' boling🙄!")
+            return False
+        else:
+            print("Noto'g'ri javob. Iltimos, 'ha' yoki 'yoq' deb javob bering.")
+            return False
+
+hodim = Hodim()
+parkovka_holati_korsatish = hodim.joy_keremi()
+parkovka = Parkovka(5)
+transport1 = Transport("A123BC", "Avtomobil")
+mijoz = Mijoz("shabnam")
+print(mijoz.transport_joylashtir(parkovka, transport1))
+
+if parkovka_holati_korsatish:
+  print(parkovka.parkovka_holati())
+  print(mijoz.transport_chiqar(parkovka, "A123BC"))
+if parkovka_holati_korsatish:
+  print(parkovka.parkovka_holati())
